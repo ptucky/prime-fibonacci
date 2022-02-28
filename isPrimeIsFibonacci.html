@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>isPrime | isFibonacci</title>
+      <style>
+        .container{  display: flex; height: 97vh;}
+        .div-left, .div-center, .div-right { border: #333 1px solid; }
+        .div-left { width: 200px; }
+        .div-center{  flex-grow: 1; }
+        .div-right { width: 300px; }
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <div class="div-left">
+          <input type="text" class="addNumber" name="addNumber"   />
+        </div>
+        <div class="div-center">
+          <select class="isCheck" name="isCheck">
+            <option value=""></option>
+            <option value="isPrime">isPrime</option>
+            <option value="isFibonacci">isFibonacci</option>
+          </select>
+        </div>
+        <div class="div-right">
+          <span class="result"></span>
+        </div>
+      </div>
+
+      <script>
+        const addNumber = document.querySelector('input');
+        const isCheck = document.querySelector('.isCheck');
+
+        addNumber.addEventListener("input", (event) => {
+          let resultCheck = "";
+
+          if (isCheck.value === "isPrime") resultCheck = isPrime(addNumber.value);
+          if (isCheck.value === "isFibonacci") resultCheck = fibonacci(addNumber.value);
+
+          document.querySelector('.result').textContent = resultCheck;
+        });
+
+        isCheck.addEventListener('change', (event) => {
+          let resultCheck = "";
+
+          if (event.target.value === "isPrime") resultCheck = isPrime(addNumber.value);
+          if (event.target.value === "isFibonacci") resultCheck = fibonacci(addNumber.value);
+
+          document.querySelector('.result').textContent = resultCheck;
+        });
+
+        const isPrime = (n) => {
+          if (isNaN(n) || !isFinite(n) || n % 1 || n < 2){
+            return false;
+          } 
+
+          const m = Math.sqrt(n);
+          let i = 2;
+          for (i; i <= m; i++) {
+            if (n % i == 0) return false;
+          }
+
+          return true;
+        };
+
+        const fibonacci = (query, count = 1, last = 0) => {
+          if (count < query) return fibonacci(query, count + last, count);
+          if (count === query) return true;
+
+          return false;
+        };
+      </script>
+    </body>
+  </html>
+</html>
