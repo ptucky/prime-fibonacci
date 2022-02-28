@@ -10,6 +10,14 @@
         .div-left { width: 200px; }
         .div-center{  flex-grow: 1; }
         .div-right { width: 300px; }
+        @media (max-width: 600px) {
+          .container {
+            display: block;
+            height: 290px;
+            overflow-x: scroll;
+          }
+          .div-left, .div-center, .div-right { border: #333 1px solid; width: auto; height: 100px; }
+        }
       </style>
     </head>
     <body>
